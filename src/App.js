@@ -10,15 +10,12 @@ import './App.css';
 
 function App() {
 
-  const [isLoading, setIsLoading] = useState(true);
   const [result, setResult] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
     fetch('https://api.github.com/users/likarajo/repos', {method: "GET"})
       .then(data => {
         setResult(data);
-        setIsLoading(false);
       })
       .catch(error => console.log(error));
   });
@@ -26,7 +23,6 @@ function App() {
   return (
     <div className="App">
       <p>Machine Learning Projects</p>
-      {!isLoading?
       <div>
         <TableContainer component={Paper}>
           <Table aria-label="simple table">
@@ -57,7 +53,6 @@ function App() {
           </Table>
         </TableContainer>
       </div>
-      :null}
     </div>
   );
 }
