@@ -6,3 +6,4 @@ git push origin master
 echo "Code Pushed"
 npm run deploy
 echo "App Deployed"
+echo "https://likarajo.github.io/ml_projects"

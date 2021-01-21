@@ -14,11 +14,12 @@ function App() {
 
   useEffect(() => {
     fetch('https://api.github.com/users/likarajo/repos', {method: "GET"})
+      .then(response => response.json())
       .then(data => {
         setResult(data);
       })
       .catch(error => console.log(error));
-  });
+  }, []);
 
   return (
     <div className="App">
@@ -28,25 +29,25 @@ function App() {
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
+                <TableCell width="15%">Name</TableCell>
                 <TableCell>Description</TableCell>
-                <TableCell>Link</TableCell>
-                <TableCell>Language</TableCell>
-                <TableCell>Created</TableCell>
-                <TableCell>Updated</TableCell>
+                <TableCell width="15%">Language</TableCell>
+                <TableCell width="15%">Created</TableCell>
+                <TableCell width="15%">Updated</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {result.map((row) => (
                 <TableRow key={row.full_name}>
-                  <TableCell component="th" scope="row">
-                    {row.name}
+                  <TableCell width="15%">
+                    <a href={row.svn_url} target="_blank" rel="noreferrer">
+                      {row.name}
+                    </a>
                   </TableCell>
-                  <TableCell align="right">{row.description}</TableCell>
-                  <TableCell align="right">{row.link}</TableCell>
-                  <TableCell align="right">{row.language}</TableCell>
-                  <TableCell align="right">{row.created_at}</TableCell>
-                  <TableCell align="right">{row.updated_at}</TableCell>
+                  <TableCell>{row.description}</TableCell>
+                  <TableCell width="15%">{row.language}</TableCell>
+                  <TableCell width="15%" alignRight>{row.created_at}</TableCell>
+                  <TableCell width="15%" alignRight sortDirection="desc">{row.updated_at}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
