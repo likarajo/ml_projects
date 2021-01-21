@@ -13,6 +13,7 @@ function App() {
   const [result, setResult] = useState([]);
 
   useEffect(() => {
+    document.title = "ML Projects"
     fetch('https://api.github.com/users/likarajo/repos', {method: "GET"})
       .then(response => response.json())
       .then(data => {
